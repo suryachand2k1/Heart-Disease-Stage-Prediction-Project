@@ -1,5 +1,5 @@
 
-# Heart Disease Prediction Project
+# Heart Risk Stage Prediction Project
 
 ## Description
 This project focuses on predicting heart disease using machine learning techniques. It includes a comprehensive data analysis performed in a Jupyter notebook and a Flask web application for deploying the predictive model. The project aims to leverage clinical data to make accurate predictions about heart disease, serving as a tool for healthcare analytics.
