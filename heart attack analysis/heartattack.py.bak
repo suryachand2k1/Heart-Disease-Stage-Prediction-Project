@@ -1,0 +1,47 @@
+import pandas as pd
+import numpy as np
+import os
+os.path.isfile("C:/Users/Tru Projects/Desktop/Surya Projects/heart attack analysis/heart.csv")
+import pickle
+from flask import Flask,request,render_template
+import requests
+
+app = Flask(__name__,static_folder='static')
+lr=pickle.load(open('finalized_model.pkl','rb'))
+
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+
+@app.route('/predict', methods=['POST','GET'])
+def predict():
+    age=float(request.form['age'])
+    sex=float(request.form['sex'])
+    trest=float(request.form['trestbps'])
+    chol=float(request.form['chol'])
+    mhr=float(request.form['mhr'])
+    fbs=float(request.form['fbs'])
+    rest=float(request.form['restecg'])
+    thalach=float(request.form['thalach'])
+    slp=float(request.form['slp'])
+    caa=float(request.form['caa'])
+    thall=float(request.form['thall'])
+    exang=float(request.form['exang'])
+    cp=float(request.form['cp'])
+    features=[[age,sex,cp,trest,chol,fbs,restecg,thalach,exang,mhr,slp,caa,thall]]
+    y=lr.predict(features)
+    if(y==1):
+        return render_template('heartdisease.html')
+    else:
+        return render_template('nodisease.html')
+if __name__ == '__main__':
+    app.run(debug=True)
+        
+    
+                            
+    
+    
+    
+    
